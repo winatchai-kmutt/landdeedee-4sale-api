@@ -15,7 +15,7 @@ from firebase_admin import credentials, auth
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import (FastAPI, UploadFile, File, Form,
                      HTTPException, Depends, Header, Request)
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
+# from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse
 
 from linebot import LineBotApi
@@ -57,12 +57,12 @@ app.add_middleware(
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
 # เพิ่ม TrustedHostMiddleware ถ้าจะจำกัดโดเมนที่เข้าถึงได้
-app.add_middleware(
-    TrustedHostMiddleware, allowed_hosts=[
-        "landdeedee-4sale.web.app",
-        "*.landdeedee-4sale.web.app"
-    ]
-)
+# app.add_middleware(
+#     TrustedHostMiddleware, allowed_hosts=[
+#         "landdeedee-4sale.web.app",
+#         "*.landdeedee-4sale.web.app"
+#     ]
+# )
 
 
 @app.exception_handler(RateLimitExceeded)
