@@ -121,6 +121,7 @@ async def send_line_message(
     full_name: str = Form(...),
     email: str = Form(...),
     message: str = Form(...),
+    content: str = Form(...),
 ):
     try:
         user_id = os.getenv("LINE_USER_ID")
@@ -128,12 +129,13 @@ async def send_line_message(
             raise HTTPException(
                 status_code=500, detail="LINE_USER_ID not configured")
 
-        line_message = f"""📩 ข้อความใหม่จากแบบฟอร์ม
+        line_message = f""" 📩 ผู้สนใจใหม่จาก Landdeedee website
 
 👤 ชื่อ-นามสกุล: {full_name}
 📧 อีเมล: {email}
 💬 ข้อความ: {message}
-"""
+🏠 tag: {content}
+                        """
         line_bot_api.push_message(user_id, TextSendMessage(text=line_message))
         return {"status": "ok"}
     except Exception as e:
