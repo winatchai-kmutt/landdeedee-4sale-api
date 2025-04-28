@@ -42,6 +42,8 @@ app = FastAPI()
 
 origins = [
     "https://landdeedee-4sale.web.app",
+    "https://www.landdeedee4sale.com",
+    "https://landdeedee4sale.com"
 ]
 
 app.add_middleware(
